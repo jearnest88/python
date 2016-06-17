@@ -1,4 +1,5 @@
 print "Scores and Grades"
+
 a = 0
 while a < 10:
 	score = input()
