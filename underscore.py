@@ -5,7 +5,17 @@ class Underscore(object):
             arrnew.append(callback(data))  #performs the lambda method on number and adds it to the new array
         return arrnew
 
-    # def reduce(self):
+    def reduce(self, arr, callback, start = None):
+        it = iter(arr)
+        if start is None:
+            try:
+                start = next(it)
+            except StopIteration:
+                raise TypeError('no initial value')
+        newValue = start
+        for data in arr:
+            newValue = callback(newValue, data)
+        return newValue
 
     def find(self, arr, callback):#adds qualifying numbers to the new array
         arrnew = []
@@ -34,6 +44,9 @@ nums = [1,2,3,4,5,6]
 
 mapMeth = _.map(nums, lambda x: x * 2)
 print mapMeth
+
+reduceMeth = _.reduce(nums, (lambda x,y: x*y))
+print reduceMeth
 
 findMeth = _.find(nums, lambda x: x % 2 == 0)
 print findMeth
